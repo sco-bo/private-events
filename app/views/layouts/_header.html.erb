@@ -1,0 +1,8 @@
+<header>
+  <div class="container">
+    <% if logged_in? %>
+      <li><%= link_to current_user.name, user_path(current_user) %></li>
+      <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
+    <% end %>
+  </div>
+</header>

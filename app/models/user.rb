@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  before_create :remember 
-
   attr_accessor :token
+  before_create :remember 
+  has_many :events
 
   def User.new_token
     SecureRandom.urlsafe_base64

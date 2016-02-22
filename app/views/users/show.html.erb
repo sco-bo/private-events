@@ -1,5 +1,14 @@
-<% if logged_in? %>
-
-  <h1><%= @user.name %></h1>
-
+<% if @user == current_user %>
+  <h1>My events:</h1>
+<% else %>
+  <h1><%= "#{@user.name}'s events:"  %></h1>
 <% end %>
+
+  <% if !@user.events.nil? %>
+    <% @user.events.each do |e| %>
+    <ul>
+      <li><%= e.location %></li>
+    </ul>
+    <% end %>
+  <% end %>
+

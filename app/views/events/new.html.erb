@@ -1,0 +1,23 @@
+<%= provide(tite: 'New Event') %>
+  <h1>Create event</h1>
+
+<%= form_for @event do |f| %>
+  
+  <p>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  </p>
+
+  <p>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  </p>
+
+  <p>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  </p>
+
+  <p><%= f.submit 'Create event' %>
+
+<% end %>
