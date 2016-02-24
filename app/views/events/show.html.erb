@@ -1,5 +1,17 @@
-<%= provide(:title, 'Event') %>
-
-<h1><%= @event.location %></h1>
+<%= provide(:title, @event.location) %>
 
 <%= "Created by #{@event.creator.name}" %>
+
+<div id="event_details_container">
+  <h1><%= @event.location %></h1>
+  <h2>Event Attendees:</h2>
+    <% @event.attendees.each do |t| %>
+    <h3><ul class="list-inline center-block text-center">
+      <li><%= link_to t.name, user_path(t) %></li>
+    </ul></h3>
+    <% end %>
+</div> 
+
+
+
+

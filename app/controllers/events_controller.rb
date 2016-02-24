@@ -22,6 +22,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  # @upcoming_events = current_user.upcoming_events
+
   private
     def event_params
       params.require(:event).permit(:location, :description, :date)

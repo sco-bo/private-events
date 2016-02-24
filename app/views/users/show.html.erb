@@ -1,14 +1,40 @@
-<% if @user == current_user %>
-  <h1>My events:</h1>
-<% else %>
-  <h1><%= "#{@user.name}'s events:"  %></h1>
-<% end %>
-
-  <% if !@user.events.nil? %>
+<% provide(:title, @user.name) %>
+<div id="created_events_container">
+  <h1>
+    <%= @user == current_user ? "My events:" : "Events #{@user.name} has created:" %>
+  </h1>
+  <% if !@user.events.nil? %>  
     <% @user.events.each do |e| %>
-    <ul>
-      <li><%= e.location %></li>
-    </ul>
+      <h3><ul class= "list-inline center-block text-center">
+        <li><%= link_to e.location, event_path(e) %></li>
+      </ul></h3>
     <% end %>
   <% end %>
+</div>
+
+<div id="upcoming_events_container">
+  <h1>
+    <%= @user == current_user ? "Upcoming events I'm attending:" : "Upcoming events #{@user.name} is attending:" %>
+  </h1>
+  <% if !@user.upcoming_events.empty? %>
+    <% @user.upcoming_events.each do |e| %>
+      <h3><ul class="list-inline center-block text-center">
+        <li><%= link_to e.location, event_path(e) %></li>
+      </ul></h3>
+    <% end %>
+  <% end %>
+</div>
+
+<div id="past_events_container">
+  <h1>
+    <%= @user == current_user ? "Past events I've attended:" : "Past events #{@user.name} has attended:" %>
+  </h1>
+  <% if !@user.previous_events.empty? %>
+    <% @user.previous_events.each do |e| %>
+      <h3><ul class="list-inline center-block text-center">
+        <li><%= link_to e.location, event_path(e) %></li>
+      </ul></h3>
+    <% end %>
+  <% end %>
+</div>
 

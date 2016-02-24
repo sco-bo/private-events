@@ -1,7 +1,25 @@
-<% if !@events.nil? %>
-  <% @events.each do |event| %>
-    <p><%= event.location %></p>
-  <% end %>
+<% provide(:title, 'Events') %>
 
-<% end %>
+<div id="upcoming_event_container">
+  <h1>Upcoming Events:</h1>
+  <% if !Event.upcoming.nil? %>
+    <% Event.upcoming.each do |e| %>
+      <h3><ul class="list-inline center-block text-center">
+        <li><%= link_to e.location, event_path(e) %></li>
+      </ul></h3>
+    <% end %>
+  <% end %>
+</div>
+
+<div id="past_event_container">
+  <h1>Previous Events:</h1>
+  <% if !Event.past.nil? %>
+    <% Event.past.each do |e| %>
+      <h3><ul class="list-inline center-block text-center">
+        <li><%= link_to e.location, event_path(e) %></li>
+      </ul></h3>
+    <% end %>
+  <% end %>
+</div>
+
 

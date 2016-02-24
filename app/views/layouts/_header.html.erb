@@ -1,8 +1,24 @@
-<header>
-  <div class="container">
-    <% if logged_in? %>
-      <li><%= link_to current_user.name, user_path(current_user) %></li>
-      <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
-    <% end %>
-  </div>
-</header>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to "All Events", events_path, class: "navbar-brand" %>
+      </div>
+      <ul class="nav navbar-nav">
+        <% if logged_in? %>
+          <li class="<%= 'active' if current_page?(user_path(current_user)) %>"><%= link_to "My Events", user_path(current_user) %></li>
+          <li class="<%= 'active' if current_page?(new_event_path) %>"><%= link_to "Create Event", new_event_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li><%= link_to current_user.name, user_path(current_user) %></li>
+          <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up',new_user_path %></li>
+          <li><%= link_to 'Log in', login_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</body>
